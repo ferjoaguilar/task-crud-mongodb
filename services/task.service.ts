@@ -6,7 +6,7 @@ import HttpException from '../libs/exceptions.libs';
 class Tasks {
   async created(task:Itask) {
     const insertResult = await (await database('tasks'))
-    .insertOne({title: task.title, description:task.description})
+    .insertOne({title: task.title, description:task.description, corelative: task.corelative})
     return insertResult
   }
 
