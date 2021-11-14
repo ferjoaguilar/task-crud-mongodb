@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routerApi from './routes'
+import { handleErrors } from './middlewares/errors.handle'
 
 const app:express.Application = express()
 dotenv.config({ path: '.env'})
@@ -8,6 +9,8 @@ dotenv.config({ path: '.env'})
 app.use(express.json())
 
 routerApi(app)
+
+app.use(handleErrors)
 
 const main = (port:number = Number(process.env.PORT) || 4000) => {
   try {
